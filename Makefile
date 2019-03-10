@@ -114,9 +114,6 @@ package_ld_logger:
 build_ld_logger:
 	$(MAKE) -C $(CC_ANALYZER)/tools/build-logger -f Makefile.manual 2> /dev/null
 
-build_ld_logger_x86:
-	$(MAKE) -C $(CC_ANALYZER)/tools/build-logger -f Makefile.manual pack32bit 2> /dev/null
-
 build_ld_logger_x64:
 	$(MAKE) -C $(CC_ANALYZER)/tools/build-logger -f Makefile.manual pack64bit 2> /dev/null
 
@@ -130,9 +127,6 @@ else
     UNAME_P ?= $(shell uname -p)
     ifeq ($(UNAME_P),x86_64)
       package_ld_logger: build_ld_logger_x64
-      package: package_ld_logger
-    else ifneq ($(filter %86,$(UNAME_P)),)
-      package_ld_logger: build_ld_logger_x86
       package: package_ld_logger
     else
       package_ld_logger: build_ld_logger
