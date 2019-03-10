@@ -69,7 +69,7 @@ sudo apt-get install clang clang-tidy build-essential curl doxygen gcc-multilib 
       git python-virtualenv python-dev thrift-compiler
 
 # Check out CodeChecker source code.
-git clone https://github.com/Ericsson/CodeChecker.git --depth 1 ~/codechecker
+git clone https://github.com/gabb99/CodeChecker.git --depth 1 ~/codechecker
 cd ~/codechecker
 
 # Create a Python virtualenv and set it as your environment.
