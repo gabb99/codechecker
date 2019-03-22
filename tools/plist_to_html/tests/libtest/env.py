@@ -13,36 +13,23 @@ from __future__ import division
 import os
 import tempfile
 
-from functional import PKG_ROOT
-from functional import REPO_ROOT
-
-
-def codechecker_env():
-    checker_env = os.environ.copy()
-    cc_bin = os.path.join(PKG_ROOT, 'bin')
-    checker_env['PATH'] = cc_bin + ":" + checker_env['PATH']
-    return checker_env
-
 
 def test_proj_root():
     return os.path.abspath(os.environ['TEST_PROJ'])
 
 
-def codechecker_cmd():
-    return os.path.join(PKG_ROOT, 'bin', 'CodeChecker')
-
-
 def get_workspace(test_id='test'):
-    """ return a temporary workspace for the tests """
-    workspace_root = os.environ.get("CC_TEST_WORKSPACE_ROOT")
+    """ Return a temporary workspace for the tests. """
+    workspace_root = os.environ.get("PLIST_TO_HTML_TEST_WORKSPACE_ROOT")
     if not workspace_root:
         # if no external workspace is set create under the build dir
-        workspace_root = os.path.join(REPO_ROOT, 'build', 'workspace')
+        workspace_root = os.path.join(os.environ['REPO_ROOT'], 'build',
+                                      'workspace')
 
     if not os.path.exists(workspace_root):
         os.makedirs(workspace_root)
 
     if test_id:
-        return tempfile.mkdtemp(prefix=test_id+"-", dir=workspace_root)
+        return tempfile.mkdtemp(prefix=test_id + "-", dir=workspace_root)
     else:
         return workspace_root
